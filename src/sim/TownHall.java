@@ -1,3 +1,7 @@
+package sim;
+
+import helper.Location;
+
 public class TownHall extends Structure {
     public TownHall(String name, double x, double y) {
         this(name, new Location(x, y));

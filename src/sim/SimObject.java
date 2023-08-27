@@ -1,16 +1,26 @@
+package sim;
+
+import helper.Location;
+
 import java.util.Objects;
 
 public abstract class SimObject {
     private final String name;
+    private final Type type;
     
-    protected SimObject(String name){
+    protected SimObject(String name) {
         this.name = name;
+        type = Type.getType(getClass());
     }
+    
+    public Type getType() {return type;}
     
     public String getName() {
         return name;
     }
+    
     public abstract Location getLocation();
+    
     public abstract void update();
     
     @Override
@@ -28,6 +38,6 @@ public abstract class SimObject {
     
     @Override
     public String toString() {
-        return "SimObject with a name of " + getName();
+        return "sim.SimObject with a name of " + getName();
     }
 }

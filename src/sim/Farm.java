@@ -1,3 +1,7 @@
+package sim;
+
+import helper.Location;
+
 public class Farm extends Structure {
     private static final double FARM_RATE = 2;
     

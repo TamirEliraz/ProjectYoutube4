@@ -1,3 +1,7 @@
+package sim;
+
+import helper.Location;
+
 import java.util.Objects;
 
 public abstract class Structure extends SimObject {
@@ -50,6 +54,6 @@ public abstract class Structure extends SimObject {
     
     @Override
     public String toString() {
-        return getClass().getName() + " " + getName() + " at " + getLocation() + ", " + getAmountAsString();
+        return getClass().getSimpleName() + " " + getName() + " at " + getLocation() + ", " + getAmountAsString();
     }
 }
