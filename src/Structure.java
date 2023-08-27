@@ -22,9 +22,17 @@ public abstract class Structure extends SimObject {
     @Override
     public void update() {}
     
-    public void deposit() {}
+    public void deposit(double suppliedAmount) {}
     
-    public double withdraw(double requestAmount) {return 0;}
+    public double withdraw(double requestAmount) {
+        double val = Math.min(requestAmount, amount);
+        amount = Math.max(0, amount - requestAmount);
+        return val;
+    }
+    
+    protected String getAmountAsString() {
+        return "The current amount is " + Location.formatPointToString(amount);
+    }
     
     @Override
     public boolean equals(Object o) {
@@ -42,6 +50,6 @@ public abstract class Structure extends SimObject {
     
     @Override
     public String toString() {
-        return getName() + " at " + getLocation();
+        return getClass().getName() + " " + getName() + " at " + getLocation() + ", " + getAmountAsString();
     }
 }
