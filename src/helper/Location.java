@@ -2,28 +2,25 @@ package helper;
 
 import java.util.Objects;
 
-public class Location {
-    private double x, y;
-    
+public class Location extends Point<Double, Double> {
     public Location(double x, double y) {
-        setXY(x, y);
-    }
-    
-    public double getX() {return x;}
-    
-    public double getY() {return y;}
-    
-    public void setX(double x) {this.x = x;}
-    
-    public void setY(double y) {this.y = y;}
-    
-    public void setXY(double x, double y) {
-        setX(x);
-        setY(y);
+        super(x, y);
     }
     
     public static String formatPointToString(double p) {
         return String.format("%.02f", p);
+    }
+    
+    private double pow(double a, int x) {
+        return x <= 0 ? 1 : a * pow(a, x - 1);
+    }
+    
+    public double getDistance(Location location) {
+        double a = pow(getX() - location.getX(), 2);
+        double b = pow(getY() - location.getY(), 2);
+        return Math.sqrt(
+                 a+b
+        );
     }
     
     @Override
@@ -31,12 +28,13 @@ public class Location {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Location location = (Location) o;
-        return Double.compare(x, location.x) == 0 && Double.compare(y, location.y) == 0;
+        return Double.compare(getX(), location.getX()) == 0 &&
+                Double.compare(getY(), location.getY()) == 0;
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(x, y);
+        return Objects.hash(getX(), getY());
     }
     
     @Override

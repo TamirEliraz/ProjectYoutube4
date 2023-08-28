@@ -1,23 +1,18 @@
 import contaners.StructuresList;
+import helper.Location;
+import helper.Point;
 import sim.Farm;
 import sim.TownHall;
 import sim.Type;
 
 public class MainTest {
     public static void main(String[] args) {
-        StructuresList structures = new StructuresList() {{
-            add(new Farm("Farmie", 1, 2));
-            add(new TownHall("Farmie", 2, 3));
-        }};
-        System.out.println(structures);
-        structures.getFarm("Farmie").update();
-        System.out.println(structures.getTownHall("Farmie").getType());
-        
-        System.out.println(structures.getFarms().get("Farmie", Type.FARM));
-        
-        structures.updateAll();
-        System.out.println(structures);
-        structures.updateAll();
-        System.out.println(structures);
+        Location location1 = new Location(0, 3);
+        Location location2 = new Location(4, 0);
+        System.out.println(location1);
+        System.out.println(location2);
+        double distance = location1.getDistance(location2);
+        System.out.println("The distance between " + location1 +
+                " and " + location2 + " is " + distance);
     }
 }

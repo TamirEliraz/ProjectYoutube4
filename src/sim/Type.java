@@ -1,7 +1,9 @@
 package sim;
 
 public enum Type {
-    NONE, FARM, TOWN_HALL;
+    NONE,
+    FARM, TOWN_HALL,
+    PEASANT, SOLDIER;
     
     public boolean isFarm() {return this == FARM;}
     
@@ -9,10 +11,18 @@ public enum Type {
     
     public boolean isStructure() {return isFarm() || isTownHall();}
     
+    public boolean isPeasant() {return this == PEASANT;}
+    
+    public boolean isSoldier() {return this == SOLDIER;}
+    
+    public boolean isAgent() {return isPeasant() || isSoldier();}
+    
     public static Type getType(Class cls) {
-        return switch (cls.getName()) {
-            case "sim.Farm" -> FARM;
-            case "sim.TownHall" -> TOWN_HALL;
+        return switch (cls.getSimpleName()) {
+            case "Farm" -> FARM;
+            case "TownHall" -> TOWN_HALL;
+            case "Peasant" -> PEASANT;
+            case "Soldier" -> SOLDIER;
             default -> NONE;
         };
     }
@@ -21,7 +31,9 @@ public enum Type {
         return switch (this) {
             case FARM -> Farm.class;
             case TOWN_HALL -> TownHall.class;
-            case NONE -> null;
+            case PEASANT -> Peasant.class;
+            /*case SOLDIER -> ;*/
+            case SOLDIER, NONE -> null;
         };
     }
 }
